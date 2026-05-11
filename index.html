@@ -1,1217 +1,203 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MT Lavage Auto — Lavage à domicile · Lunéville</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#0b0f1a;--ink2:#1a2236;--muted:#64748b;--line:#e8ecf3;
-  --bg:#f4f6fb;--white:#fff;
-  --blue:#1d4ed8;--blue2:#2563eb;--sky:#38bdf8;
-  --red:#e63946;--orange:#f97316;--green:#22c55e;
-  --r:16px;--r2:26px;
-  --sh:0 2px 18px rgba(11,15,26,.07);
-  --sh2:0 10px 40px rgba(11,15,26,.13);
-}
-html{scroll-behavior:smooth}
-body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-thumb{background:#c7d0e0;border-radius:3px}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes pulseRing{0%{transform:scale(.85);opacity:.7}70%{transform:scale(1.3);opacity:0}100%{transform:scale(.85);opacity:0}}
-@keyframes logoGlow{0%,100%{box-shadow:0 0 30px rgba(56,189,248,.15),0 0 60px rgba(29,78,216,.1)}50%{box-shadow:0 0 50px rgba(56,189,248,.3),0 0 90px rgba(29,78,216,.2)}}
-
-.fu{animation:fadeUp .65s cubic-bezier(.22,.68,0,1.2) both}
-.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
-.d4{animation-delay:.32s}.d5{animation-delay:.40s}.d6{animation-delay:.50s}
-
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 36px;
-  background:rgba(255,255,255,.85);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(232,236,243,.6);
-  transition:box-shadow .3s;
-}
-nav.sc{box-shadow:var(--sh2)}
-.nav-logo img{height:40px;filter:drop-shadow(0 1px 4px rgba(0,0,0,.12))}
-.nav-btns{display:flex;align-items:center;gap:10px}
-.nav-formules{
-  display:inline-flex;align-items:center;
-  color:var(--ink2);font-size:13px;font-weight:600;
-  text-decoration:none;padding:9px 16px;border-radius:40px;
-  border:1.5px solid var(--line);background:white;
-  transition:.2s;white-space:nowrap;
-}
-.nav-formules:hover{border-color:var(--blue2);color:var(--blue2)}
-@media(max-width:480px){.nav-formules{display:none}}
-.nav-rdv{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--blue2);color:white;
-  padding:10px 22px;border-radius:40px;
-  text-decoration:none;font-size:14px;font-weight:600;border:none;cursor:pointer;
-  font-family:'Sora',sans-serif;transition:.2s;
-}
-.nav-rdv:hover{background:var(--blue);transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.35)}
-
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  background:linear-gradient(150deg,#060c1c 0%,#0c1d48 45%,#071022 100%);
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;padding:130px 24px 90px;
-  position:relative;overflow:hidden;
-}
-.hero-orb1{position:absolute;top:-80px;left:-100px;width:520px;height:520px;background:radial-gradient(circle,rgba(29,78,216,.2) 0%,transparent 65%);pointer-events:none}
-.hero-orb2{position:absolute;bottom:-60px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(56,189,248,.13) 0%,transparent 65%);pointer-events:none}
-.hero-grid{position:absolute;inset:0;pointer-events:none;opacity:.035;background-image:linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);background-size:52px 52px}
-
-.hero-logo-wrap{position:relative;margin-bottom:36px;display:inline-flex;align-items:center;justify-content:center}
-.hero-logo-wrap::before{content:'';position:absolute;inset:-18px;border-radius:28px;background:linear-gradient(135deg,rgba(56,189,248,.18),rgba(29,78,216,.12),rgba(56,189,248,.18));animation:logoGlow 3.5s ease-in-out infinite;filter:blur(2px)}
-.hero-logo-wrap::after{content:'';position:absolute;inset:-1px;border-radius:24px;background:linear-gradient(135deg,rgba(56,189,248,.35),rgba(99,102,241,.25),rgba(56,189,248,.35));pointer-events:none}
-.hero-logo-bg{position:relative;z-index:1;background:rgba(255,255,255,.07);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:18px 32px}
-.hero-logo-bg img{height:72px;filter:drop-shadow(0 4px 20px rgba(56,189,248,.4)) brightness(1.1)}
-
-.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.8);font-size:13px;font-weight:500;padding:8px 18px;border-radius:40px;margin-bottom:24px;backdrop-filter:blur(8px)}
-.badge-dot{width:8px;height:8px;background:var(--green);border-radius:50%;position:relative}
-.badge-dot::after{content:'';position:absolute;inset:0;background:var(--green);border-radius:50%;animation:pulseRing 2s infinite}
-
-.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(36px,6.5vw,68px);color:white;line-height:1.1;margin-bottom:20px;max-width:760px}
-.hero h1 em{font-style:italic;background:linear-gradient(90deg,#93c5fd,#38bdf8,#a78bfa);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease infinite}
-.hero-sub{color:rgba(255,255,255,.55);font-size:clamp(14px,2vw,17px);max-width:500px;margin-bottom:36px;font-weight:300}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:44px}
-.btn-hero-main{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--ink);padding:14px 28px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:.22s;box-shadow:0 4px 24px rgba(255,255,255,.14);font-family:'Sora',sans-serif}
-.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(255,255,255,.22)}
-.btn-hero-main img{height:20px}
-.btn-hero-sec{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);color:white;padding:14px 28px;border-radius:50px;font-size:15px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:.22s}
-.btn-hero-sec:hover{background:rgba(255,255,255,.17);transform:translateY(-3px)}
-.btn-hero-sec img{height:20px}
-.hero-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.h-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);font-size:12px;font-weight:500;padding:8px 16px;border-radius:40px}
-.h-pill img{height:14px;opacity:.8}
-
-/* ── TRUST BAND ── */
-.trust-band{background:var(--ink);padding:36px 24px}
-.trust-inner{max-width:1060px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center}
-.trust-block{flex:1;min-width:190px;display:flex;flex-direction:column;align-items:center;padding:16px 20px;border-right:1px solid rgba(255,255,255,.07);text-align:center}
-.trust-block:last-child{border-right:none}
-.t-num{font-family:'DM Serif Display',serif;font-size:40px;color:white;line-height:1;margin-bottom:6px}
-.t-num em{color:var(--sky);font-style:normal}
-.t-desc{font-size:13px;color:rgba(255,255,255,.4)}
-
-/* ── SECTIONS SHARED ── */
-.sec{padding:52px 24px}
-.sec-c{max-width:1060px;margin:0 auto}
-.sec-hd{text-align:center;margin-bottom:32px}
-.label-tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.15);padding:6px 14px;border-radius:40px;margin-bottom:14px}
-.label-dot{width:6px;height:6px;background:var(--blue2);border-radius:50%}
-h2.sh{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);line-height:1.15;color:var(--ink);margin-bottom:12px}
-h2.sh span{color:var(--blue2)}
-.sh-sub{color:var(--muted);font-size:15px;max-width:480px;margin:0 auto;font-weight:300}
-
-/* ── AVANT / APRÈS ── */
-.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-@media(max-width:720px){.ba-grid{grid-template-columns:1fr}}
-.ba-card{border-radius:var(--r2);overflow:hidden;box-shadow:var(--sh2);background:var(--ink2)}
-.ba-head{display:flex;align-items:center;gap:10px;padding:16px 20px;background:rgba(255,255,255,.05);font-weight:600;font-size:15px;color:white}
-.ba-head img{height:22px}
-.before-after{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;cursor:ew-resize;touch-action:none;user-select:none;-webkit-user-select:none;background:#0b0f1a}
-.before-after img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
-.img-left{clip-path:inset(0 50% 0 0)}.img-right{clip-path:inset(0 0 0 50%)}
-.slider-line{position:absolute;top:0;left:50%;width:2px;height:100%;background:white;z-index:3;pointer-events:none}
-.slider-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;background:white;border-radius:50%;z-index:4;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.3);pointer-events:none;font-size:12px;color:var(--ink);font-weight:700;letter-spacing:-2px}
-.ba-hint{text-align:center;margin-top:16px;color:var(--muted);font-size:13px}
-
-/* ── PRESTATIONS ── */
-.pricing-section{background:linear-gradient(160deg,#e8f0fe 0%,#eef4ff 40%,#e0f0ff 100%);padding:52px 24px}
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media(max-width:860px){.cards-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
-
-.card{
-  background:var(--white);border-radius:var(--r2);padding:32px 26px;
-  box-shadow:var(--sh);display:flex;flex-direction:column;align-items:center;text-align:center;
-  position:relative;transition:.28s cubic-bezier(.22,.68,0,1.3);
-  cursor:pointer;border:2px solid transparent;overflow:hidden;
-}
-.card:hover{transform:translateY(-8px);box-shadow:var(--sh2);border-color:rgba(37,99,235,.1)}
-.card-orange{background:linear-gradient(145deg,#c2440a,#ea580c,#f97316);color:white;border-color:transparent}
-.card-orange:hover{border-color:rgba(255,255,255,.2);box-shadow:0 14px 40px rgba(249,115,22,.4)}
-.card-ribbon{position:absolute;top:16px;right:-28px;background:rgba(0,0,0,.22);color:white;font-size:11px;font-weight:700;letter-spacing:.05em;padding:5px 38px;transform:rotate(35deg);pointer-events:none;}
-.card-ico{width:72px;height:72px;border-radius:22px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;}
-.card-ico img{height:40px}
-.ico-r{background:linear-gradient(145deg,#fff0f1,#ffe4e6);box-shadow:0 6px 20px rgba(230,57,70,.3)}
-.ico-b{background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:0 6px 20px rgba(37,99,235,.25)}
-.ico-w{background:rgba(255,255,255,.22);border:2px solid rgba(255,255,255,.35);box-shadow:0 6px 20px rgba(0,0,0,.2)}
-.card-orange .card-ico img{filter:brightness(0) invert(1)}
-.card h3{font-size:20px;font-weight:700;margin-bottom:5px}
-.card-sub{font-size:13px;color:var(--muted);margin-bottom:18px}
-.card-orange .card-sub{color:rgba(255,255,255,.65)}
-.feat-list{list-style:none;margin-bottom:22px;display:flex;flex-direction:column;gap:9px;width:100%;text-align:left}
-.feat-list li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)}
-.card-orange .feat-list li{color:rgba(255,255,255,.85)}
-.chk{width:20px;height:20px;min-width:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
-.chk-r{background:rgba(230,57,70,.1);color:var(--red)}
-.chk-b{background:rgba(37,99,235,.1);color:var(--blue2)}
-.chk-w{background:rgba(255,255,255,.22);color:white}
-.card-sep{width:100%;height:1px;background:var(--line);margin:4px 0 18px}
-.card-orange .card-sep{background:rgba(255,255,255,.2)}
-.card-dur{font-size:12px;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:5px}
-.card-orange .card-dur{color:rgba(255,255,255,.55)}
-.btn-rdv{width:100%;padding:13px;border-radius:50px;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:.22s;margin-top:auto;text-decoration:none;}
-.btn-rdv img{height:18px}
-.btn-rdv:hover{filter:brightness(1.08);transform:scale(1.03)}
-.rdv-r{background:var(--red);color:white}
-.rdv-b{background:var(--blue2);color:white}
-.rdv-w{background:white;color:#b83a0a;font-weight:800}
-.btn-det{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:12px;font-weight:600;color:var(--blue2);margin-top:10px;padding:0;width:100%;text-align:center;}
-.card-orange .btn-det{color:rgba(255,255,255,.6)}
-.details-box{max-height:0;overflow:hidden;opacity:0;transition:.4s ease;font-size:12px;text-align:left;width:100%}
-.card.open .details-box{max-height:280px;opacity:1;margin-top:12px}
-.details-box li{display:flex;align-items:center;gap:7px;color:var(--muted);margin-bottom:6px;list-style:none}
-.details-box li img{height:12px}
-.card-orange .details-box li{color:rgba(255,255,255,.7)}
-
-/* ── TABLEAU TARIFS ── */
-.pricing-table-wrap{background:var(--white);border-radius:var(--r2);overflow:hidden;border:1.5px solid var(--line);margin-top:32px}
-.pt-title{font-size:14px;font-weight:700;color:var(--ink);padding:15px 20px;border-bottom:1px solid var(--line)}
-.pt-head{display:grid;grid-template-columns:1fr 90px 90px 100px;padding:10px 20px;background:#f8faff;border-bottom:2px solid var(--line);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.pt-col{text-align:center}
-.pt-col-red{color:var(--red)}.pt-col-blue{color:var(--blue2)}.pt-col-dark{color:var(--orange)}
-.pt-row{display:grid;grid-template-columns:1fr 90px 90px 100px;padding:14px 20px;border-bottom:1px solid var(--line);align-items:center;transition:.2s}
-.pt-row:hover{background:rgba(37,99,235,.03)}
-.pt-row-last{border-bottom:none}
-.pt-veh{display:flex;align-items:center;gap:11px}
-.pt-veh-icon{font-size:22px}
-.pt-veh-name{font-size:14px;font-weight:600;color:var(--ink)}
-.pt-veh-ex{font-size:11px;color:var(--muted)}
-.pt-price{font-size:14px;font-weight:700;display:block;line-height:1.2;text-align:center}
-.red-p{color:var(--red)}.blue-p{color:var(--blue2)}.dark-p{color:var(--orange)}
-.pt-eco{font-size:10px;color:var(--green);font-weight:600;background:rgba(34,197,94,.1);padding:1px 6px;border-radius:20px;display:block;text-align:center;margin-top:3px}
-.pt-note{padding:12px 20px;font-size:12px;color:var(--muted);background:#f8faff;border-top:1px solid var(--line);text-align:center}
-@media(max-width:640px){.pt-head,.pt-row{grid-template-columns:1fr 66px 66px 76px;padding:10px 12px}.pt-price{font-size:12px}.pt-veh-icon{font-size:18px}}
-@media(max-width:480px){
-  .pt-head,.pt-row{grid-template-columns:1fr 52px 52px 60px;padding:8px 10px}
-  .pt-price{font-size:13px;font-weight:800}
-  .pt-veh-icon{font-size:15px}
-  .pt-veh-name{font-size:11px}
-  .pt-veh-ex{font-size:9px}
-  .pt-col{font-size:9px;letter-spacing:0}
-  .pt-eco{font-size:9px;padding:1px 4px}
-  .pt-note{font-size:10px;padding:10px 10px}
-  .pt-title{font-size:12px;padding:12px 12px}
-  .pt-prices-mobile{display:none}
-}
-
-/* ── HORAIRES BAND ── */
-.horaires-band{background:var(--ink2);padding:30px 24px}
-.horaires-inner{max-width:860px;margin:0 auto;text-align:center}
-.horaires-title{font-family:'DM Serif Display',serif;font-size:22px;color:white;margin-bottom:20px}
-.horaires-title span{color:var(--sky)}
-.horaires-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px}
-.h-slot{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:12px 24px}
-.h-slot-num{font-size:13px;font-weight:700;color:rgba(255,255,255,.35);min-width:20px}
-.h-slot-time{font-size:16px;font-weight:700;color:white;letter-spacing:.02em}
-.h-slot-label{font-size:11px;color:rgba(255,255,255,.4);font-weight:500}
-
-/* ── AVANTAGES ── */
-.bens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media(max-width:720px){.bens-grid{grid-template-columns:1fr}}
-.ben-card{background:var(--white);border-radius:var(--r2);padding:26px 22px;display:flex;align-items:flex-start;gap:16px;box-shadow:var(--sh);transition:.25s}
-.ben-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
-.ben-ico{width:46px;height:46px;min-width:46px;border-radius:14px;background:var(--bg);display:flex;align-items:center;justify-content:center}
-.ben-ico img{height:24px}
-.ben-body h4{font-size:15px;font-weight:700;margin-bottom:4px}
-.ben-body p{font-size:13px;color:var(--muted);line-height:1.5}
-
-/* ── FAQ ── */
-.faq-wrap{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.faq-item{background:var(--white);border-radius:var(--r);box-shadow:var(--sh);overflow:hidden;border:1px solid var(--line);transition:.25s}
-.faq-item.open{border-color:rgba(37,99,235,.18);box-shadow:0 4px 22px rgba(37,99,235,.08)}
-.faq-q{width:100%;padding:17px 20px;border:none;background:transparent;cursor:pointer;text-align:left;font-weight:600;font-size:15px;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Sora',sans-serif}
-.faq-q:hover{color:var(--blue2)}
-.faq-ico{width:28px;height:28px;min-width:28px;background:var(--bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--blue2);font-weight:300;transition:.3s}
-.faq-item.open .faq-ico{transform:rotate(45deg);background:rgba(37,99,235,.1)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s;opacity:0;padding:0 20px;font-size:14px;color:var(--muted);text-align:left;line-height:1.7}
-.faq-item.open .faq-a{max-height:200px;opacity:1;padding:0 20px 18px}
-
-/* ── CTA ── */
-.cta-band{background:linear-gradient(135deg,#0f1f45,#1d3a8a);padding:52px 24px;text-align:center}
-.cta-band h2{font-family:'DM Serif Display',serif;font-size:clamp(26px,4vw,42px);color:white;margin-bottom:14px}
-.cta-band p{color:rgba(255,255,255,.55);font-size:16px;max-width:480px;margin:0 auto 34px}
-.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-.cta-btn-main{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--ink);padding:14px 28px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:.22s;font-family:'Sora',sans-serif}
-.cta-btn-main:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(255,255,255,.2)}
-.cta-btn-main img{height:20px}
-.cta-btn-sec{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);color:white;padding:14px 28px;border-radius:50px;font-size:15px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.2);cursor:pointer;transition:.22s}
-.cta-btn-sec:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
-.cta-btn-sec img{height:20px}
-
-/* ── FOOTER ── */
-footer{background:var(--ink2);color:rgba(255,255,255,.45);padding:32px 24px;text-align:center;font-size:13px;line-height:2.2}
-footer strong{color:rgba(255,255,255,.8)}
-.foot-logo{margin-bottom:14px}
-.foot-logo img{height:42px;opacity:.85}
-.foot-sep{width:48px;height:2px;background:var(--blue2);margin:14px auto;border-radius:2px;opacity:.4}
-.foot-social{display:flex;justify-content:center;gap:14px;margin:16px 0}
-.foot-social a{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);text-decoration:none;font-size:16px;transition:.2s}
-.foot-social a:hover{background:var(--blue2);border-color:var(--blue2);color:white;transform:translateY(-2px)}
-
-/* ── MODAL SMART ── */
-.modal{display:none;position:fixed;inset:0;background:rgba(11,15,26,.75);backdrop-filter:blur(5px);justify-content:center;align-items:center;z-index:999;padding:16px}
-.modal-box{background:white;border-radius:var(--r2);padding:28px 28px 24px;width:min(480px,100%);box-shadow:var(--sh2);animation:fadeUp .35s both;max-height:90vh;overflow-y:auto}
-.mb-progress{display:flex;align-items:center;margin-bottom:28px}
-.mb-step{display:flex;flex-direction:column;align-items:center;gap:4px}
-.mb-step-num{width:32px;height:32px;border-radius:50%;background:var(--line);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transition:.3s}
-.mb-step.active .mb-step-num{background:var(--blue2);color:white;box-shadow:0 2px 10px rgba(37,99,235,.35)}
-.mb-step.done .mb-step-num{background:var(--green);color:white}
-.mb-step-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.mb-step.active .mb-step-label{color:var(--blue2)}
-.mb-line{flex:1;height:2px;background:var(--line);margin:0 6px;margin-bottom:14px;transition:.3s}
-.mb-line.done{background:var(--green)}
-.mb-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);margin-bottom:14px}
-.mb-back{background:none;border:none;cursor:pointer;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:var(--muted);padding:0;margin-bottom:14px;display:flex;align-items:center;gap:4px;transition:.2s}
-.mb-back:hover{color:var(--blue2)}
-.mb-close-top{margin-top:14px;width:100%;padding:9px;background:transparent;border:1.5px solid var(--line);border-radius:50px;cursor:pointer;font-family:'Sora',sans-serif;font-size:13px;color:var(--muted);transition:.2s}
-.mb-close-top:hover{background:var(--bg)}
-.mb-formula-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.mb-formula-btn{border-radius:16px;border:2px solid var(--line);padding:18px 10px 14px;cursor:pointer;transition:.22s;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:'Sora',sans-serif;position:relative;overflow:hidden}
-.mb-formula-btn:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
-.mf-red{background:linear-gradient(145deg,#fff0f1,#ffd6d9);border-color:rgba(230,57,70,.25)}
-.mf-red .mf-name{color:#c0202e}
-.mf-red .mf-price{color:rgba(192,32,46,.65)}
-.mf-orange{background:linear-gradient(145deg,#fff3e8,#ffe0c2);border-color:rgba(249,115,22,.3)}
-.mf-orange .mf-name{color:#c2440a}
-.mf-orange .mf-price{color:rgba(194,68,10,.65)}
-.mf-blue{background:linear-gradient(145deg,#eff6ff,#dbeafe);border-color:rgba(37,99,235,.2)}
-.mf-blue .mf-name{color:#1d4ed8}
-.mf-blue .mf-price{color:rgba(29,78,216,.65)}
-.mf-name{font-size:13px;font-weight:800}
-.mf-price{font-size:11px;font-weight:600}
-.mf-ico-wrap{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:2px}
-.mf-ico-red{background:rgba(230,57,70,.12)}
-.mf-ico-orange{background:rgba(249,115,22,.12)}
-.mf-ico-blue{background:rgba(37,99,235,.1)}
-.mb-pop{position:absolute;top:5px;right:6px;background:var(--orange);color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px}
-.mb-veh-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mb-veh-btn{border-radius:16px;border:2px solid var(--line);background:var(--bg);padding:18px 12px;cursor:pointer;transition:.22s;display:flex;flex-direction:column;align-items:center;gap:5px;font-family:'Sora',sans-serif}
-.mb-veh-btn:hover{border-color:var(--blue2);background:#eff6ff;transform:translateY(-3px);box-shadow:var(--sh2)}
-.mv-emoji{font-size:32px}
-.mv-name{font-size:14px;font-weight:700;color:var(--ink)}
-.mv-ex{font-size:11px;color:var(--muted)}
-.poil-choice{width:100%;display:flex;align-items:center;justify-content:space-between;padding:15px 18px;border-radius:var(--r);border:2px solid var(--line);background:var(--white);cursor:pointer;font-family:'Sora',sans-serif;transition:.22s;text-align:left;margin-bottom:8px}
-.poil-choice:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
-.poil-no:hover{border-color:var(--green);background:rgba(34,197,94,.05)}
-.poil-yes:hover{border-color:var(--orange);background:rgba(249,115,22,.05)}
-.pc-left{display:flex;align-items:center;gap:12px}
-.pc-icon-wrap{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.pc-icon-green{background:rgba(34,197,94,.1)}
-.pc-icon-orange{background:rgba(249,115,22,.1)}
-.pc-title{font-size:14px;font-weight:700;color:var(--ink)}
-.pc-sub{font-size:12px;color:var(--muted)}
-.pc-tag{font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;flex-shrink:0}
-.pc-tag-green{background:rgba(34,197,94,.12);color:var(--green)}
-.pc-tag-orange{background:rgba(249,115,22,.12);color:var(--orange)}
-.poils-or{text-align:center;font-size:12px;color:var(--muted);margin:2px 0 8px;font-weight:600}
-.poils-qty-title{font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin:16px 0 12px;padding-top:14px;border-top:1px solid var(--line)}
-.poils-qty-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.poils-qty-btn{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 12px;border-radius:var(--r);border:2px solid var(--line);background:var(--bg);cursor:pointer;font-family:'Sora',sans-serif;transition:.22s}
-.poils-qty-btn:hover{border-color:var(--orange);background:rgba(249,115,22,.06);transform:translateY(-3px);box-shadow:var(--sh2)}
-.pqb-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;margin-bottom:2px}
-.pqb-icon-few{background:rgba(249,115,22,.1);color:var(--orange)}
-.pqb-icon-many{background:rgba(249,115,22,.2);color:var(--orange);font-size:8px;letter-spacing:1px}
-.pqb-name{font-size:13px;font-weight:700;color:var(--ink);text-align:center}
-.pqb-price{font-size:14px;font-weight:800;color:var(--orange)}
-.mb-recap{background:linear-gradient(135deg,#eff6ff,#f0f9ff);border:1.5px solid rgba(37,99,235,.15);border-radius:var(--r);padding:12px 16px;margin-bottom:18px;font-size:14px;color:var(--ink2);font-weight:600;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
-.recap-price-tag{font-size:22px;font-weight:800;color:var(--blue2)}
-.mb-recap-full{background:var(--bg);border:1.5px solid var(--line);border-radius:var(--r);padding:14px 16px;margin-bottom:18px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
-.mb-recap-full strong{color:var(--ink);font-weight:700}
-.recap-row{display:flex;align-items:center;gap:8px}
-.mb-label{display:block;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.m-field{width:100%;padding:12px 15px;border:1.5px solid var(--line);border-radius:var(--r);font-family:'Sora',sans-serif;font-size:14px;color:var(--ink);margin-bottom:11px;outline:none;transition:.2s}
-.m-field:focus{border-color:var(--blue2);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.mb-next-btn{width:100%;padding:13px;background:var(--blue2);color:white;border:none;border-radius:50px;cursor:pointer;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;margin-top:16px;transition:.2s}
-.mb-next-btn:hover{background:var(--blue);transform:translateY(-1px)}
-.m-btns{display:flex;gap:10px;margin:6px 0 10px}
-.m-btns button{flex:1;padding:12px;border:none;border-radius:50px;cursor:pointer;font-size:14px;font-weight:700;font-family:'Sora',sans-serif;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
-.m-btns button:hover{filter:brightness(1.07);transform:scale(1.02)}
-.sms-b{background:#25D366;color:white}
-.mail-b{background:var(--ink);color:white}
-.close-b{width:100%;padding:10px;background:transparent;border:1.5px solid var(--line);border-radius:50px;cursor:pointer;font-family:'Sora',sans-serif;font-size:13px;font-weight:500;color:var(--muted);transition:.2s}
-.close-b:hover{background:var(--bg)}
-.cal-inline{background:#f8faff;border:1.5px solid rgba(37,99,235,.15);border-radius:var(--r2);overflow:hidden;margin-bottom:14px}
-.cal-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:white;border-bottom:1px solid var(--line)}
-.cal-month-label{font-size:14px;font-weight:700;color:var(--ink);text-align:center;flex:1}
-.cal-nav{background:none;border:1.5px solid var(--line);border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;transition:.2s;line-height:1;padding:0;flex-shrink:0}
-.cal-nav:hover{border-color:var(--blue2);color:var(--blue2);background:#eff6ff}
-.cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);padding:8px 8px 2px;background:white;border-bottom:1px solid var(--line)}
-.cal-weekdays span{text-align:center;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:2px 0}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);padding:6px 8px 8px;gap:1px}
-.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;font-size:13px;font-weight:500;color:var(--ink);border:none;background:none;font-family:'Sora',sans-serif;transition:.15s;min-width:0}
-.cal-day:hover:not(.cal-day-disabled):not(.cal-day-other){background:#dbeafe;color:var(--blue2);font-weight:700}
-.cal-day-today{background:#eff6ff;color:var(--blue2);font-weight:700;border:1.5px solid rgba(37,99,235,.35)}
-.cal-day-selected{background:var(--blue2)!important;color:white!important;font-weight:700!important;box-shadow:0 2px 8px rgba(37,99,235,.35)}
-.cal-day-disabled{color:#d1d5db;cursor:not-allowed;font-weight:400}
-.cal-day-other{color:#e5e7eb;cursor:default}
-.cal-selected-display{padding:10px 16px;background:white;border-top:1px solid var(--line);font-size:13px;font-weight:500;color:var(--muted);text-align:center}
-.cal-sel-filled{color:var(--blue2)!important;font-weight:700!important}
-
-/* ── PHOTO UPLOAD STEP ── */
-.photo-upload-zone{border:2px dashed rgba(37,99,235,.3);border-radius:var(--r2);background:#f8faff;padding:28px 20px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:14px;position:relative}
-.photo-upload-zone:hover{border-color:var(--blue2);background:#eff6ff}
-.photo-upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.puz-icon{font-size:36px;margin-bottom:10px}
-.puz-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px}
-.puz-sub{font-size:12px;color:var(--muted);line-height:1.5}
-.photo-preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.photo-thumb{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--bg)}
-.photo-thumb img{width:100%;height:100%;object-fit:cover}
-.photo-thumb-del{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.55);color:white;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;line-height:1}
-.photo-note-box{background:rgba(249,115,22,.06);border:1px solid rgba(249,115,22,.25);border-radius:var(--r);padding:12px 14px;font-size:12px;color:var(--ink);line-height:1.6;margin-bottom:14px}
-.photo-note-box strong{color:var(--orange)}
-.photo-skip{width:100%;background:var(--ink2);border:none;font-family:'Sora',sans-serif;font-size:15px;font-weight:700;color:white;cursor:pointer;padding:15px;text-align:center;margin-top:12px;border-radius:50px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.photo-skip:hover{background:var(--ink);transform:translateY(-1px)}
-
-@media(max-width:600px){
-  nav{padding:12px 18px}
-  .hero{padding:100px 16px 60px}
-  .hero-logo-bg{padding:12px 20px}
-  .hero-logo-bg img{height:48px}
-  .hero-badge{font-size:11px;padding:6px 14px}
-  .hero h1{font-size:clamp(28px,8vw,42px);margin-bottom:14px}
-  .hero-sub{font-size:13px;margin-bottom:24px}
-  .btn-hero-main,.btn-hero-sec{padding:11px 18px;font-size:13px}
-  .hero-actions{gap:10px;margin-bottom:28px}
-  .trust-block{flex:none;width:50%;border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
-  .trust-block:nth-child(even){border-right:none}
-  .t-num{font-size:30px}
-  .sec{padding:36px 16px}
-  .steps-outer{padding:36px 16px}
-  h2.sh{font-size:clamp(20px,6vw,28px)}
-  .sh-sub{font-size:13px}
-  .horaires-band{padding:24px 16px}
-  .horaires-title{font-size:17px;margin-bottom:16px}
-  .h-slot{padding:10px 16px;gap:10px}
-  .h-slot-time{font-size:14px}
-  .bens-grid{grid-template-columns:1fr}
-  .ben-card{padding:18px 16px;gap:12px}
-  .ben-ico{width:38px;height:38px;min-width:38px;border-radius:10px}
-  .ben-body h4{font-size:13px}
-  .ben-body p{font-size:12px}
-  .pricing-section{padding:36px 16px}
-  .cards-grid{max-width:100%}
-  .card{padding:22px 18px}
-  .card h3{font-size:17px}
-  .feat-list li{font-size:12px}
-  .pt-head,.pt-row{grid-template-columns:1fr 58px 58px 68px;padding:10px 10px}
-  .pt-price{font-size:11px}
-  .pt-veh-name{font-size:12px}
-  .pt-veh-ex{font-size:10px}
-  .pt-veh-icon{font-size:16px}
-  .pt-note{font-size:11px;padding:10px 12px}
-  .faq-q{font-size:13px;padding:14px 16px}
-  .faq-a{font-size:13px}
-  .cta-band{padding:36px 16px}
-  .cta-band p{font-size:14px}
-  footer{padding:24px 16px;font-size:12px}
-  .prise-band-note{font-size:11px;padding:8px 14px}
-  .modal-box{padding:20px 16px 18px;border-radius:20px}
-  .mb-step-label{font-size:8px}
-  .mb-step-num{width:26px;height:26px;font-size:11px}
-  .mb-line{margin:0 3px;margin-bottom:12px}
-  .mb-title{font-size:17px}
-  .mb-formula-grid{gap:8px}
-  .mb-formula-btn{padding:14px 8px 12px}
-  .mf-name{font-size:12px}
-  .mf-price{font-size:10px}
-  .mf-ico-wrap{width:38px;height:38px}
-  .mb-veh-grid{gap:8px}
-  .mb-veh-btn{padding:14px 10px}
-  .mv-emoji{font-size:26px}
-  .mv-name{font-size:12px}
-  .mv-ex{font-size:10px}
-  .cal-day{font-size:12px}
-  .cal-weekdays span{font-size:9px}
-}
-
-.prise-band-note{display:inline-flex;align-items:center;gap:10px;background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.3);color:rgba(255,220,180,.9);font-size:13px;font-weight:600;padding:10px 20px;border-radius:50px;margin-top:4px}
-
-/* ── STEPS ── */
-.steps-outer{background:#eef4ff;padding:52px 24px}
-.steps-inner{max-width:1060px;margin:0 auto}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:32px}
-@media(max-width:860px){.steps-grid{grid-template-columns:repeat(2,1fr)}}
-.step-card{background:var(--white);border-radius:var(--r2);padding:30px 24px;text-align:center;position:relative;transition:.25s}
-.step-card:hover{transform:translateY(-5px);box-shadow:var(--sh2)}
-.step-num{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue2),var(--sky));color:white;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 14px rgba(37,99,235,.3)}
-.step-icon{font-size:28px;margin-bottom:12px}
-.step-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
-.step-card p{font-size:13px;color:var(--muted);line-height:1.6}
-.step-arrow{position:absolute;top:40px;right:-18px;font-size:22px;color:var(--line);z-index:2}
-@media(max-width:860px){.step-arrow{display:none}}
-@media(max-width:600px){.steps-grid{gap:8px}.step-card{padding:14px 10px;border-radius:14px}.step-num{width:30px;height:30px;font-size:13px;margin-bottom:8px}.step-icon{font-size:18px;margin-bottom:6px}.step-card h4{font-size:11px;margin-bottom:3px}.step-card p{font-size:10px;line-height:1.4}}
-
-/* ── VAN CONTACT SCREEN ── */
-.van-contact-box{text-align:center;padding:10px 0}
-.van-contact-icon{font-size:52px;margin-bottom:12px}
-.van-contact-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);margin-bottom:8px}
-.van-contact-sub{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:24px;max-width:320px;margin-left:auto;margin-right:auto}
-.van-btns{display:flex;gap:12px;margin-bottom:12px}
-.van-btn-sms{flex:1;padding:13px;background:#25D366;color:white;border:none;border-radius:50px;cursor:pointer;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
-.van-btn-sms:hover{filter:brightness(1.08);transform:scale(1.02)}
-.van-btn-mail{flex:1;padding:13px;background:var(--ink);color:white;border:none;border-radius:50px;cursor:pointer;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:.2s}
-.van-btn-mail:hover{filter:brightness(1.15);transform:scale(1.02)}
-/* ── CRÉNEAUX HORAIRES BOUTONS ── */
-.slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.slot-btn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:16px 10px;border-radius:16px;border:2px solid var(--line);background:var(--bg);cursor:pointer;font-family:'Sora',sans-serif;transition:.22s;position:relative;overflow:hidden}
-.slot-btn:hover{border-color:var(--blue2);background:#eff6ff;transform:translateY(-3px);box-shadow:var(--sh2)}
-.slot-btn.selected{border-color:var(--blue2);background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:0 4px 16px rgba(37,99,235,.2)}
-.slot-btn.selected::after{content:'✓';position:absolute;top:6px;right:8px;font-size:11px;font-weight:800;color:var(--blue2)}
-.slot-icon{font-size:22px;line-height:1}
-.slot-time{font-size:17px;font-weight:800;color:var(--ink);letter-spacing:.01em}
-.slot-label{font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.slot-btn.selected .slot-time{color:var(--blue2)}
-.slot-btn.selected .slot-label{color:rgba(37,99,235,.7)}
-@media(max-width:600px){
-  .slot-btn{padding:14px 8px;border-radius:14px}
-  .slot-icon{font-size:18px}
-  .slot-time{font-size:15px}
-  .slot-label{font-size:9px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mc Toussaint - Le Kiosque</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #000000;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1, h2 {
+      color: #ff6600;
+      text-align: center;
+    }
+    .logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 200px;
+      height: auto;
+    }
+    .section {
+      margin: 40px 0;
+    }
+    .menu-item {
+      background: #ff6600;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .price {
+      float: right;
+      font-weight: bold;
+      color: #f0f0f0;
+    }
+    .clear {
+      clear: both;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #f0f0f0;
+    }
+    }
+    .l {
+      font-size: 0.9em;
+      color: #f0f0f0;
+    }
+	}
+    .texty {
+      font-size: 0.9em;
+      color: #f0f0f0;
+    }
+	.buttons {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .buttons a {
+      display: inline-block;
+      background: #ff6600;
+      color: #fff;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .buttons a:hover {
+      background: #cc5200;
+    }
+    .footer-info {
+      text-align: center;
+      margin-top: 40px;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-logo"><img src="https://i.imgur.com/oPar5g4.png" alt="MT Lavage Auto"></div>
-  <div class="nav-btns">
-    <a href="#formules" class="nav-formules">Voir les formules</a>
-    <button class="nav-rdv" onclick="openBooking(null)">Prendre RDV</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-orb1"></div><div class="hero-orb2"></div><div class="hero-grid"></div>
-  <div class="hero-logo-wrap fu">
-    <div class="hero-logo-bg"><img src="https://i.imgur.com/oPar5g4.png" alt="MT Lavage Auto"></div>
-  </div>
-  <div class="hero-badge fu d1"><span class="badge-dot"></span>Disponible · 25 km autour de Lunéville</div>
-  <h1 class="fu d2">Votre voiture<br><em>comme neuve</em><br>sans bouger de chez vous</h1>
-  <p class="hero-sub fu d3">Service de lavage automobile professionnel à domicile. Résultat garanti, paiement sur place.</p>
-  
-  <div class="fu d3" style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.22);color:white;font-size:14px;font-weight:700;padding:12px 24px;border-radius:50px;margin-bottom:32px;backdrop-filter:blur(8px)">
-    ⚡ Réservez en 30 secondes — message pré-rempli, vous n'avez rien à taper
-  </div>
-
-  <div class="hero-actions fu d4">
-    <button class="btn-hero-main" onclick="openBooking(null)"><img src="https://i.imgur.com/CaOo0Al.png" alt="">Prendre rendez-vous</button>
-    <a href="mailto:mt.lavage.auto.54@gmail.com" class="btn-hero-sec"><img src="https://i.imgur.com/NihwN18.png" alt="">Envoyer un email</a>
-  </div>
-  <div class="hero-pills fu d5">
-    <div class="h-pill"><img src="https://i.imgur.com/nquPnCg.png" alt="">Espèces</div>
-    <div class="h-pill"><img src="https://i.imgur.com/IJMvks4.png" alt="">Carte bancaire</div>
-    <div class="h-pill">✅ Résultat garanti</div>
-  </div>
-</section>
-
-<!-- TRUST BAND — dark -->
-<div class="trust-band">
-  <div class="trust-inner">
-    <div class="trust-block"><div class="t-num">7<em>j/7</em></div><div class="t-desc">Disponible tous les jours</div></div>
-    <div class="trust-block"><div class="t-num">3</div><div class="t-desc">Créneaux par jour</div></div>
-    <div class="trust-block"><div class="t-num">25<em>km</em></div><div class="t-desc">Rayon d'intervention</div></div>
-    <div class="trust-block"><div class="t-num">100<em>%</em></div><div class="t-desc">Résultat garanti</div></div>
-  </div>
-</div>
-
-<!-- COMMENT ÇA MARCHE — bleu clair -->
-<div class="steps-outer">
-  <div class="steps-inner">
-    <div class="sec-hd">
-      <div class="label-tag"><span class="label-dot"></span>Simple &amp; rapide</div>
-      <h2 class="sh">Comment ça <span>marche ?</span></h2>
-      <p class="sh-sub">Réservez en 30 secondes, on s'occupe du reste</p>
+  <div class="container">
+    <div class="logo">
+      <img src="https://i.imgur.com/BFkU8SG.png" alt="Logo McToussaint">
     </div>
-    <div class="steps-grid">
-      <div class="step-card"><div class="step-num">1</div><div class="step-icon">📋</div><h4>Choisissez votre formule</h4><p>Intérieur, extérieur ou formule complète.<strong style="color:var(--orange)"><br>Message pré-rempli automatiquement</strong>, vous n'avez rien à taper</p><div class="step-arrow">→</div></div>
-      <div class="step-card"><div class="step-num">2</div><div class="step-icon">📅</div><h4>Choisissez date &amp; heure</h4><p>Sélectionnez le créneau qui vous convient parmi 3 plages horaires</p><div class="step-arrow">→</div></div>
-      <div class="step-card"><div class="step-num">3</div><div class="step-icon">📍</div><h4>On vient chez vous</h4><p>À domicile, au travail — où vous voulez dans un rayon de 25 km</p><div class="step-arrow">→</div></div>
-      <div class="step-card"><div class="step-num">4</div><div class="step-icon">✨</div><h4>Voiture comme neuve</h4><p>Résultat professionnel garanti, paiement sur place uniquement</p></div>
-    </div>
-  </div>
-</div>
+    <h1>MC TOUSSAINT<br>
+	(Le Kiosque)</h1>
 
-<!-- HORAIRES BAND — dark navy -->
-<div class="horaires-band">
-  <div class="horaires-inner">
-    <div class="horaires-title">🕐 Mes <span>créneaux disponibles</span> — 7j/7</div>
-    <div class="horaires-grid">
-      <div class="h-slot">
-        <span class="h-slot-num">①</span>
-        <div>
-          <div class="h-slot-time">8h30</div>
-          <div class="h-slot-label">Matin</div>
-        </div>
+    <p style="text-align: center; font-size: 1.1em; color: #f0f0f0;">Burgers et frites maison - Vente à emporter avec tables à disposition</p>
+	  
+	  <p style="text-align: center; font-size: 1.1em; color: #f0f0f0;">⏰ Ouvert vendredi et samedi de 18h45 à 21h30 - Dimanche de 18h45 à 21h</p>
+	  <p style="text-align: center; font-size: 1.1em; color: #f0f0f0;">☎️ Commande à partir de 18h</p>
+      <p style="text-align: center; font-size: 1.1em; color: #f0f0f0;">Vendredi et samedi dernière commande à 21h15 - Dimanche dernière commande à 20h45</p>
+
+    <div class="section">
+      <h2>NOS BURGERS</h2>
+      <div class="menu-item"><span class="note"><strong>MC CHEESE</strong></span> <div class="clear"></div><p class="note">Pain buns du boulanger, cheddar, oignons rouges, tomates, cornichons, sauce au choix puis steak haché* au choix <br><br> <p align="center"> <FONT COLOR="#ffffff"> <strong>Viande Bovine 100g = &nbsp; 7€ <br> Black Angus 150g = &nbsp; 8€ <br> Black Angus 200g = &nbsp; 9€</strong> </FONT> </p></div>
+      <div class="menu-item"><span class="note"><strong>MC CHEVRE</strong></span><div class="clear"></div><p class="note">Pain buns du boulanger, chèvre, oignons confits, miel, tomates, salade, steak haché* au choix <br><br> <p align="center"> <FONT COLOR="#ffffff"> <strong>Viande Bovine 100g = &nbsp; 9€ <br> Black Angus 150g = &nbsp; 10€ <br> Black Angus 200g = &nbsp; 11€</strong> </FONT> </p></div>
+      <div class="menu-item"><span class="note"><strong>MC TOMME</strong></span> <div class="clear"></div><p class="note">Pain buns du boulanger, tomme de Savoie, lard grillé, oignons confits, tomates, salade, sauce au choix puis steak haché* au choix <br><br> <p align="center"> <FONT COLOR="#ffffff"> <strong>Viande Bovine 100g = &nbsp; 10€ <br> Black Angus 150g = &nbsp; 11€ <br> Black Angus 200g = &nbsp; 12€</strong> </FONT> </p></div>
+      <div class="menu-item"><span class="note"><strong>MC MUNSTER</strong> </span><div class="clear"></div><p class="note">Pain buns du boulanger, munster, lard grillé, oignons rouges, tomates, salade, sauce au choix puis steak haché* au choix <br><br> <p align="center"> <FONT COLOR="#ffffff"> <strong>Viande Bovine 100g = &nbsp; 11€ <br> Black Angus 150g = &nbsp; 12€ <br> Black Angus 200g = &nbsp; 13€</strong> </FONT> </p></div>
+      <div class="menu-item"><span class="note"><strong>MC RACLETTE</strong></span> <div class="clear"></div><p class="note">Pain buns du boulanger, raclette, lard grillé, oignons confits, tomates, salade, sauce au choix puis steak haché* au choix <br><br> <p align="center"> <FONT COLOR="#ffffff"> <strong>Viande Bovine 100g = &nbsp; 11€ <br> Black Angus 150g = &nbsp; 12€ <br> Black Angus 200g = &nbsp; 13€</strong> </FONT> </p></div>
+	  <div class="menu-item"><span class="note"><strong>MC TOUSSAINT DU MOMENT</strong></span> <div class="clear"></div><p class="note">Recette du moment à retrouver sur les réseaux sociaux puis steak haché* au choix <br><br> <p align="center"> <FONT COLOR="#ffffff"> <strong>Viande Bovine 100g = &nbsp; 13,5€ <br> Black Angus 150g = &nbsp; 14,5€ <br> Black Angus 200g = &nbsp; 15,5€</strong> </FONT> </p></div>
+	  <div class="menu-item"><span class="texty"><strong>Sauce au choix</strong></span> <div class="clear"></div><p class="texty">Mayonnaise, ketchup, burger, moutarde américaine, barbecue, curry, andalouse, samouraï</div>
+	  <div class="menu-item"><span class="note"><strong>MENU ENFANT</strong></span> <span class="price">8,5€</span><div class="clear"></div><p class="note">Burger enfant, steak haché de boeuf surgelé enfant, cheddar, ketchup, petite portion de frites, briquette de jus de pomme , compote de pomme</p></div>
+	</div>
+
+	<p class="note">* Steak haché de bœuf surgelé - 150g et 200g race Black Angus<br>
+    ** Possibilité de remplacer le steak haché de bœuf 200g par du poulet pané au corn flakes</p>
+
+    <div class="section">
+      <h2>SUPPLEMENTS</h2>
+      <div class="menu-item"><span class="note"><strong>Frites maison avec burger</strong></span> <span class="price">+3€</span><div class="clear"></div></div>
+      <div class="menu-item"><span class="note"><strong>Frites cheddar avec burger</strong></span> <span class="price">+4,5€</span><div class="clear"></div></div>
+      <div class="menu-item"><span class="note"><strong>Frites sans burger</strong></span> <span class="price">+4€</span><div class="clear"></div></div>
+      <div class="menu-item"><span class="note"><strong>Frites cheddar sans burger</strong></span> <span class="price">+5,5€</span><div class="clear"></div></div>
+      <div class="menu-item"><span class="note"><strong>Supplément steak haché</strong></span> <div class="clear"></div>
+		<span class="note">Viande Bovine (100g)</span> <span class="price">+2,5€</span><br>
+		<span class="note">Black Angus (150g)</span> <span class="price">+3,5€</span><br>
+		<span class="note">Black Angus (200g)</span> <span class="price">+4,5€</span><br></div>
+
+		
+		  
+	  <div class="menu-item"><span class="note"><strong>Supplément lard ou fromage</strong></span> <span class="price">+1,5€</span><div class="clear"></div></div>
+	</div>
+
+    <div class="section">
+      <h2>BOISSONS</h2>
+      
+	  <div class="menu-item"><span class="note"><strong>Boissons 50cl</strong></span> <div class="clear"></div>
+        <span class="note">Eau plate</span> <span class="price">1€</span><br>
+        <span class="note">Eau gazeuse</span> <span class="price">1,5€</span><br>
+        <span class="note">Eau gazeuse citron</span> <span class="price">1,5€</span><br>
       </div>
-      <div class="h-slot">
-        <span class="h-slot-num">②</span>
-        <div>
-          <div class="h-slot-time">12h30</div>
-          <div class="h-slot-label">Après-midi</div>
-        </div>
+	  
+      <div class="menu-item"><span class="note"><strong>Boissons 33cl</strong></span> <span class="price">2€</span><div class="clear"></div>
+        <p class="note">Coca-Cola, Coca-Cola Cherry, Fanta orange, Schweppes Agrumes, Sprite, Fuze Tea Pêche, Oasis tropical</p>
       </div>
-      <div class="h-slot">
-        <span class="h-slot-num">③</span>
-        <div>
-          <div class="h-slot-time">16h30</div>
-          <div class="h-slot-label">Fin de journée</div>
-        </div>
+      <div class="menu-item"><span class="note"><strong>Briquettes (20cl)</strong></span> <span class="price">1€</span><div class="clear"></div>
+        <p class="note">Jus de pomme</p>
+      </div>
+      <div class="menu-item"><span class="note"><strong>Bières & Vins</strong></span><br>
+        <span class="note">Licorne Elsass (25cl)</span> <span class="price">2,5€</span><br>
+        <span class="note">Licorne El Grande (33cl)</span> <span class="price">3,5€</span><br>
+        <span class="note">Lindemans Black (33cl)</span> <span class="price">3,5€</span><br>
+		<span class="note">Lindemans Kriek (25cl)</span> <span class="price">3,5€</span><br>
+		<span class="note">Blanc, Rosé, Rouge (75cl)</span> <span class="price">8,5€</span>
       </div>
     </div>
-    <br>
-    <div class="prise-band-note">
-      ⚡ Une prise électrique accessible est nécessaire pour la réalisation de la prestation
-    </div>
-  </div>
-</div>
 
-<!-- QUI SUIS-JE — blanc pur -->
-<div class="sec" style="background:var(--white)">
-  <div class="sec-c" style="max-width:760px">
-    <div class="sec-hd">
-      <div class="label-tag"><span class="label-dot"></span>À propos</div>
-      <h2 class="sh">Qui <span>suis-je ?</span></h2>
+
+    <div class="buttons">
+      
+	  <a href="https://www.facebook.com/share/1AWMWH76zb/" target="_blank">
+		<img src="https://i.imgur.com/bDsNBGD.png" alt="Instagram" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+		Facebook
+	  </a>
+	  
+	  <a href="https://www.instagram.com/mctoussaintlekiosque" target="_blank">
+		<img src="https://i.imgur.com/YVK3Trv.png" alt="Instagram" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+		Instagram
+	  </a>
+	  
     </div>
-    <div style="background:var(--bg);border-radius:var(--r2);padding:36px 32px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;justify-content:center;box-shadow:var(--sh)">
-      <div style="width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,#e8f0fe,#dbeafe);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:3px solid white;box-shadow:var(--sh2)">
-        <span style="font-size:64px">👋</span>
-      </div>
-      <div style="flex:1;min-width:260px">
-        <h3 style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--ink);margin-bottom:12px">Bonjour, moi c'est <span style="color:var(--blue2)">Mao</span> !</h3>
-        <p style="color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:10px">Passionné par l'automobile et le souci du détail, j'ai créé <strong style="color:var(--ink)">MT Lavage Auto</strong> afin de proposer un service de lavage à domicile professionnel autour de Lunéville.</p>
-        <p style="color:var(--muted);font-size:14px;line-height:1.7">Mon objectif est simple : vous permettre de retrouver un véhicule <strong style="color:var(--ink)">propre</strong>, <strong style="color:var(--ink)">soigné</strong> et <strong style="color:var(--ink)">éclatant</strong>, sans avoir à vous déplacer.</p><br>
-        <p style="color:var(--muted);font-size:14px;line-height:1.7">J'accorde une attention particulière à chaque véhicule avec du matériel adapté, des produits de qualité et un travail minutieux pour un résultat à la hauteur de vos attentes.</p>
-      </div>
+
+    <div class="buttons">
+
+	  <a href="https://www.google.com/search?sca_esv=896bc82726dbc1e3&rlz=1C1CHBD_frFR1086FR1091&tbm=lcl&sxsrf=AHTn8zo26QEnebtSjWXw_LZdWG3m3ZhqfQ:1746721039611&q=MC%20Toussaint%20%28le%20kiosque%20%C3%A0%20burgers%29%20Avis&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDUzNbQwNzQ3NjIwNzA2tTA0sNzAyPiKUdPXWSEkv7S4ODEzr0RBIydVITszv7iwNFXh8AKFpNKi9NSiYk0Fx7LM4kWsxKsFAEqPUDhzAAAA&rldimm=15651871732070358109&hl=fr-FR&sa=X&ved=0CAcQ5foLahcKEwjo1Jb6opSNAxUAAAAAHQAAAAAQBQ&biw=1536&bih=730&dpr=1.25#lkt=LocalPoiReviews&arid=ChdDSUhNMG9nS0VJQ0FnSURyMzRtX3ZnRRAB&lrd=0x47947f6fcd90b7ad:0xd9369e69c4081c5d,3,,,," target="_blank">
+		<img src="https://i.imgur.com/GADQGNM.png" alt="Google avis" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+		Je laisse un avis Google
+		</a>
+		
+	  <a href="https://www.tripadvisor.fr/UserReviewEdit-g8341713-d28127113-Mc_Toussaint_le_Kiosque-Chanteheux_Meurthe_et_Moselle_Grand_Est.html" target="_blank">
+		<img src="https://i.imgur.com/SbnA0HW.png" alt="TripAdvisor" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+		Je laisse un avis TripAdvisor
+	  </a>
+
+	<div class="buttons">
+
+		<a href="tel:0624700184">📞 Appeler le MC TOUSSAINT</a>
+
+		<div class="buttons">
+
+			<a href="https://www.google.fr/maps/place/MC+Toussaint+(le+kiosque+%C3%A0+burgers)/@48.5903903,6.5384355,14z/data=!4m6!3m5!1s0x47947f6fcd90b7ad:0xd9369e69c4081c5d!8m2!3d48.5903843!4d6.5530105!16s%2Fg%2F11y4t3sbrw?hl=fr&entry=ttu&g_ep=EgoyMDI1MDUwNS4wIKXMDSoASAFQAw%3D%3D">
+			<img src="https://i.imgur.com/IgJdvn2.png" alt="TripAdvisor" style="height: 20px; vertical-align: middle; margin-right: 8px;">
+			Adresse MC TOUSSAINT</a>
+
+    <div class="footer-info">
+      
+	  <p>Juin 2025</p>
     </div>
   </div>
-</div>
-
-<!-- AVANT / APRÈS — warm orange tint -->
-<div class="sec" style="background:#f0f4fb">
-  <div class="sec-c">
-    <div class="sec-hd">
-      <div class="label-tag"><span class="label-dot"></span>Résultats réels</div>
-      <h2 class="sh">La différence se voit<br><span>au premier coup d'œil</span></h2>
-      <p class="sh-sub">Glissez le curseur pour comparer avant et après</p>
-    </div>
-    <div class="ba-grid">
-      <div class="ba-card"><div class="ba-head"><img src="https://i.imgur.com/vLcJWDh.png" alt="">Intérieur</div><div class="before-after"><img src="https://i.imgur.com/Yuutfbz.jpeg" class="img-right" alt="après"><img src="https://i.imgur.com/yIppxsQ.jpeg" class="img-left" alt="avant"><div class="slider-line"></div><div class="slider-btn">◀▶</div></div></div>
-      <div class="ba-card"><div class="ba-head"><img src="https://i.imgur.com/jEgsTM9.png" alt="">Extérieur</div><div class="before-after"><img src="https://i.imgur.com/jHf3qH2.jpeg" class="img-right" alt="après"><img src="https://i.imgur.com/qNc3B6O.jpeg" class="img-left" alt="avant"><div class="slider-line"></div><div class="slider-btn">◀▶</div></div></div>
-    </div>
-    <p class="ba-hint">← Glissez pour voir la transformation →</p>
-  </div>
-</div>
-
-<!-- PRESTATIONS — bleu dégradé -->
-<div class="pricing-section" id="formules">
-  <div class="sec-c">
-    <div class="sec-hd">
-      <div class="label-tag" style="background:rgba(37,99,235,.14);border-color:rgba(37,99,235,.28)"><span class="label-dot"></span>📋 Réservez votre prestation</div>
-      <h2 class="sh">Choisissez votre <span>formule</span></h2>
-      <p class="sh-sub">Le tarif s'adapte à votre véhicule</p>
-    </div>
-
-    <div class="cards-grid">
-      <!-- Intérieur -->
-      <div class="card" onclick="toggleDetails(this,'interieur')">
-        <div class="card-ico ico-r"><img src="https://i.imgur.com/vLcJWDh.png" alt=""></div>
-        <h3>Intérieur</h3>
-        <p class="card-sub">Lavage intérieur complet</p>
-        <ul class="feat-list">
-          <li><span class="chk chk-r">✓</span>Aspiration complète des sièges, tapis, moquettes et coffre</li>
-          <li><span class="chk chk-r">✓</span>Dépoussiérage et nettoyage des plastiques intérieurs</li>
-          <li><span class="chk chk-r">✓</span>Nettoyage des vitres intérieures</li>
-          <li><span class="chk chk-r">✓</span>Nettoyage des seuils de portes</li>
-          <li><span class="chk chk-r">✓</span>Nettoyage des espaces difficiles d'accès</li>
-          <li><span class="chk chk-r">✓</span>Élimination des saletés, poussières et traces du quotidien</li>
-        </ul>
-        <div class="card-sep"></div>
-        <div class="card-dur">🚗 À domicile</div>
-        <button class="btn-rdv rdv-r" onclick="event.stopPropagation();openBooking('Intérieur')"><img src="https://i.imgur.com/CaOo0Al.png" alt="">Prendre RDV</button>
-      </div>
-
-      <!-- Complet ORANGE -->
-      <div class="card card-orange" onclick="toggleDetails(this,'complet')">
-        <div class="card-ribbon">🔥 Populaire</div>
-        <div class="card-ico ico-w"><img src="https://i.imgur.com/0yZv1u9.png" alt=""></div>
-        <h3>Complet</h3>
-        <p class="card-sub">Intérieur + extérieur</p>
-        <ul class="feat-list">
-          <li><span class="chk chk-w">✓</span>Nettoyage complet intérieur et extérieur du véhicule</li>
-          <li><span class="chk chk-w">✓</span>Intérieur dépoussiéré, aspiré et rafraîchi</li>
-          <li><span class="chk chk-w">✓</span>Lavage de la carrosserie à la main pour un rendu propre et brillant</li>
-          <li><span class="chk chk-w">✓</span>Nettoyage des vitres, jantes et finitions du véhicule</li>
-          <li><span class="chk chk-w">✓</span>Élimination des saletés et traces du quotidien</li>
-        </ul>
-        <div class="card-sep"></div>
-        <div class="card-dur">🚗 À domicile</div>
-        <button class="btn-rdv rdv-w" onclick="event.stopPropagation();openBooking('Complet')"><img src="https://i.imgur.com/bDjmXji.png" alt="">Prendre RDV</button>
-      </div>
-
-      <!-- Extérieur -->
-      <div class="card" onclick="toggleDetails(this,'exterieur')">
-        <div class="card-ico ico-b"><img src="https://i.imgur.com/jEgsTM9.png" alt=""></div>
-        <h3>Extérieur</h3>
-        <p class="card-sub">Lavage extérieur complet</p>
-        <ul class="feat-list">
-          <li><span class="chk chk-b">✓</span>Lavage complet de la carrosserie à la main</li>
-          <li><span class="chk chk-b">✓</span>Nettoyage des jantes</li>
-          <li><span class="chk chk-b">✓</span>Nettoyage des contours et finitions extérieures</li>
-          <li><span class="chk chk-b">✓</span>Nettoyage des vitres extérieures</li>
-          <li><span class="chk chk-b">✓</span>Séchage à la microfibre pour éviter les traces et micro-rayures</li>
-          <li><span class="chk chk-b">✓</span>Finition propre et brillante de la carrosserie</li>
-        </ul>
-        <div class="card-sep"></div>
-        <div class="card-dur">🚗 À domicile</div>
-        <button class="btn-rdv rdv-b" onclick="event.stopPropagation();openBooking('Extérieur')"><img src="https://i.imgur.com/RtQLKyp.png" alt="">Prendre RDV</button>
-      </div>
-    </div>
-
-    <!-- TABLEAU TARIFS -->
-    <div class="pricing-table-wrap">
-      <div class="pt-title">Tarifs selon votre véhicule</div>
-      <div class="pt-head">
-        <div></div>
-        <div class="pt-col pt-col-red">Intérieur</div>
-        <div class="pt-col pt-col-blue">Extérieur</div>
-        <div class="pt-col pt-col-dark">Complet</div>
-      </div>
-      <div class="pt-row">
-        <div class="pt-veh"><span class="pt-veh-icon">🚗</span><div><div class="pt-veh-name">Citadine</div><div class="pt-veh-ex">Clio, Polo, 208…</div></div></div>
-        <div class="pt-col"><span class="pt-price red-p">45€</span></div>
-        <div class="pt-col"><span class="pt-price blue-p">40€</span></div>
-        <div class="pt-col"><span class="pt-price dark-p">75€</span><span class="pt-eco">−10€</span></div>
-      </div>
-      <div class="pt-row">
-        <div class="pt-veh"><span class="pt-veh-icon">🚙</span><div><div class="pt-veh-name">Berline &amp; Compacte</div><div class="pt-veh-ex">Golf, 308, Classe A…</div></div></div>
-        <div class="pt-col"><span class="pt-price red-p">50€</span></div>
-        <div class="pt-col"><span class="pt-price blue-p">45€</span></div>
-        <div class="pt-col"><span class="pt-price dark-p">85€</span><span class="pt-eco">−10€</span></div>
-      </div>
-      <div class="pt-row pt-row-last">
-        <div class="pt-veh"><span class="pt-veh-icon">🚐</span><div><div class="pt-veh-name">SUV &amp; Monospace</div><div class="pt-veh-ex">Kadjar, 3008, Q3…</div></div></div>
-        <div class="pt-col"><span class="pt-price red-p">55€</span></div>
-        <div class="pt-col"><span class="pt-price blue-p">50€</span></div>
-        <div class="pt-col"><span class="pt-price dark-p">95€</span><span class="pt-eco">−10€</span></div>
-      </div>
-      <div class="pt-note">💳 Paiement sur place · Espèces ou carte bancaire · 📍 Déplacement gratuit jusqu'à 25 km · Au-delà : +0,50€/km</div>
-    </div>
-
-  </div>
-</div>
-
-<!-- AVIS CLIENTS — bleu très clair -->
-<div class="sec" style="background:var(--white)">
-  <div class="sec-c">
-    <div class="sec-hd">
-      <div class="label-tag"><span class="label-dot"></span>Avis clients</div>
-      <h2 class="sh">Ils me font <span>confiance</span></h2>
-      <p class="sh-sub">Retrouvez tous les avis sur ma fiche Google Business</p>
-    </div>
-    <div style="text-align:center;padding:48px 24px;background:var(--white);border-radius:var(--r2);box-shadow:var(--sh);max-width:600px;margin:0 auto">
-      <div style="font-size:52px;margin-bottom:12px">⭐</div>
-      <h3 style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);margin-bottom:10px">Bientôt disponibles</h3>
-      <p style="color:var(--muted);font-size:14px;margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto">Les avis Google de mes premiers clients seront affichés ici très prochainement.</p>
-      <a href="#" id="google-business-link" style="display:inline-flex;align-items:center;gap:8px;background:var(--blue2);color:white;padding:12px 24px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none">
-        🔗 Voir mes avis Google
-      </a>
-    </div>
-  </div>
-</div>
-
-<!-- POURQUOI NOUS — rose/violet doux -->
-<div class="sec" style="background:#eef4ff">
-  <div class="sec-c">
-    <div class="sec-hd">
-      <div class="label-tag"><span class="label-dot"></span>Nos engagements</div>
-      <h2 class="sh">Pourquoi choisir <span>MT Lavage Auto ?</span></h2>
-    </div>
-    <div class="bens-grid">
-      <div class="ben-card"><div class="ben-ico"><img src="https://i.imgur.com/HHvo2oY.png" alt=""></div><div class="ben-body"><h4>Déplacement gratuit</h4><p>Je viens chez vous jusqu'à 25 km autour de Lunéville. Au-delà : seulement 0,50€/km.</p></div></div>
-      <div class="ben-card"><div class="ben-ico"><img src="https://i.imgur.com/UzRGRNH.png" alt=""></div><div class="ben-body"><h4>Matériel professionnel</h4><p>Produits et équipements pro pour un résultat optimal. Vous n'avez rien à prévoir.</p></div></div>
-      <div class="ben-card"><div class="ben-ico"><img src="https://i.imgur.com/D8XBC47.png" alt=""></div><div class="ben-body"><h4>Résultat garanti</h4><p>Pas satisfait ? Je corrige sur place immédiatement, sans supplément.</p></div></div>
-      <div class="ben-card"><div class="ben-ico"><img src="https://i.imgur.com/K3HUKeC.png" alt=""></div><div class="ben-body"><h4>Réponse rapide</h4><p>Je réponds à tous les messages rapidement et confirme votre RDV par retour de SMS ou email.</p></div></div>
-      <div class="ben-card"><div class="ben-ico"><img src="https://i.imgur.com/nquPnCg.png" alt=""></div><div class="ben-body"><h4>Paiement sur place</h4><p>Espèces ou carte bancaire, après la prestation. Aucun acompte demandé.</p></div></div>
-      <div class="ben-card"><div class="ben-ico"><img src="https://i.imgur.com/X8UWBIr.png" alt=""></div><div class="ben-body"><h4>Disponible 7j/7</h4><p>Week-end compris, 3 créneaux par jour. Je m'adapte à vos disponibilités.</p></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- FAQ — gris très léger -->
-<div class="sec" style="background:var(--bg)">
-  <div class="sec-c">
-    <div class="sec-hd">
-      <div class="label-tag"><span class="label-dot"></span>FAQ</div>
-      <h2 class="sh">Vos questions, <span>nos réponses</span></h2>
-    </div>
-    <div class="faq-wrap">
-      <div class="faq-item"><button class="faq-q">Vous venez avec votre propre matériel ?<span class="faq-ico">+</span></button><div class="faq-a">Oui, je me déplace avec tout le matériel : aspirateur, produits professionnels, microfibres… Vous n'avez rien à prévoir.</div></div>
-      <div class="faq-item"><button class="faq-q">Combien de temps dure une prestation ?<span class="faq-ico">+</span></button><div class="faq-a">Comptez 1h à 2h pour un lavage intérieur ou extérieur, et 2h à 3h pour la formule Complète. Cela varie selon l'état du véhicule.</div></div>
-      <div class="faq-item"><button class="faq-q">Intervenez-vous partout autour de Lunéville ?<span class="faq-ico">+</span></button><div class="faq-a">J'interviens dans un rayon de 25 km autour de Lunéville : Dombasle-sur-Meurthe, Baccarat, Saint-Nicolas-de-Port, Bayon, Blâmont… Au-delà de 25 km, un supplément de 0,50€/km s'applique. Contactez-moi pour vérifier votre adresse.</div></div>
-      <div class="faq-item"><button class="faq-q">Comment se passe le paiement ?<span class="faq-ico">+</span></button><div class="faq-a">Le paiement se fait sur place, après la prestation. J'accepte les espèces et la carte bancaire. Aucun acompte demandé.</div></div>
-      <div class="faq-item"><button class="faq-q">Est-ce que le résultat est garanti ?<span class="faq-ico">+</span></button><div class="faq-a">Oui ! Si vous n'êtes pas satisfait, je corrige sur place sans supplément. Votre satisfaction est ma priorité absolue.</div></div>
-      <div class="faq-item"><button class="faq-q">Quels sont les créneaux disponibles ?<span class="faq-ico">+</span></button><div class="faq-a">Je propose 3 créneaux par jour, 7j/7 : matin (8h30), après-midi (12h30) et fin de journée (16h30). Vous choisissez directement lors de la réservation.</div></div>
-      <div class="faq-item"><button class="faq-q">Faut-il une prise électrique ?<span class="faq-ico">+</span></button><div class="faq-a">Oui, une prise électrique accessible est indispensable pour réaliser la prestation. Merci d'en tenir compte lors de la réservation.</div></div>
-      <div class="faq-item"><button class="faq-q">Comment prendre rendez-vous ?<span class="faq-ico">+</span></button><div class="faq-a">Cliquez sur "Prendre RDV", choisissez votre formule, véhicule, date et horaire. Un message est automatiquement pré-rempli avec tous vos choix — il vous suffit d'appuyer sur Envoyer par SMS ou Email. Je confirme rapidement.</div></div>
-      <div class="faq-item"><button class="faq-q">Puis-je commander pour plusieurs véhicules ?<span class="faq-ico">+</span></button><div class="faq-a">Tout à fait ! Contactez-moi directement par email pour un devis adapté à votre flotte.</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- CTA FINAL — dark blue -->
-<div class="cta-band">
-  <h2>Prêt pour une voiture<br>comme neuve ?</h2>
-  <p>Réservez en 30 secondes — votre message est pré-rempli automatiquement. Je viens chez vous.</p>
-  <div class="cta-btns">
-    <button class="cta-btn-main" onclick="openBooking(null)"><img src="https://i.imgur.com/CaOo0Al.png" alt="">Prendre rendez-vous</button>
-    <a href="mailto:mt.lavage.auto.54@gmail.com" class="cta-btn-sec"><img src="https://i.imgur.com/NihwN18.png" alt="">Envoyer un email</a>
-  </div>
-  <br>
-  <div class="cta-btns">
-    <a href="tel:+330778043568" class="cta-btn-sec">📞 Appeler</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="foot-logo"><img src="https://i.imgur.com/oPar5g4.png" alt="MT Lavage Auto"></div>
-  <div class="foot-sep"></div>
-  <p><strong>MT Lavage Auto</strong> — Lavage automobile à domicile</p>
-  <p><strong>Gérant :</strong> Ton Prénom NOM &nbsp;·&nbsp; <strong>Statut :</strong> Auto-entrepreneur</p>
-  <p><strong>SIRET :</strong> XXX XXX XXX XXXXX &nbsp;·&nbsp; <strong>Adresse :</strong> Ton adresse, Lunéville (54)</p>
-  <p><strong>Email :</strong> mt.lavage.auto.54@gmail.com &nbsp;·&nbsp; <strong>Zone :</strong> Lunéville & 25 km alentours</p>
-  <p><strong>TVA :</strong> TVA non applicable, art. 293B du CGI</p>
-</footer>
-
-<!-- MODAL SMART BOOKING -->
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="mb-progress">
-      <div class="mb-step" id="prog-1"><div class="mb-step-num">1</div><div class="mb-step-label">Formule</div></div>
-      <div class="mb-line" id="mbl-1"></div>
-      <div class="mb-step" id="prog-2"><div class="mb-step-num">2</div><div class="mb-step-label">Véhicule</div></div>
-      <div class="mb-line" id="mbl-2"></div>
-      <div class="mb-step" id="prog-25"><div class="mb-step-num">3</div><div class="mb-step-label">Options</div></div>
-      <div class="mb-line" id="mbl-25"></div>
-      <div class="mb-step" id="prog-35"><div class="mb-step-num">4</div><div class="mb-step-label">Photos</div></div>
-      <div class="mb-line" id="mbl-35"></div>
-      <div class="mb-step" id="prog-3"><div class="mb-step-num">5</div><div class="mb-step-label">Créneau</div></div>
-      <div class="mb-line" id="mbl-3"></div>
-      <div class="mb-step" id="prog-4"><div class="mb-step-num">6</div><div class="mb-step-label">Confirmer</div></div>
-    </div>
-
-    <!-- ÉTAPE 1 : Formule -->
-    <div id="screen-1">
-      <div class="mb-title">Quelle formule ?</div>
-      <div class="mb-formula-grid">
-        <button class="mb-formula-btn mf-red" onclick="pickFormule('Intérieur')">
-          <div class="mf-ico-wrap mf-ico-red"><img src="https://i.imgur.com/vLcJWDh.png" style="height:26px"></div>
-          <span class="mf-name">Intérieur</span><span class="mf-price">dès 45€</span>
-        </button>
-        <button class="mb-formula-btn mf-orange" onclick="pickFormule('Complet')" style="position:relative">
-          <span class="mb-pop">🔥</span>
-          <div class="mf-ico-wrap mf-ico-orange"><img src="https://i.imgur.com/0yZv1u9.png" style="height:26px"></div>
-          <span class="mf-name">Complet</span><span class="mf-price">dès 75€</span>
-        </button>
-        <button class="mb-formula-btn mf-blue" onclick="pickFormule('Extérieur')">
-          <div class="mf-ico-wrap mf-ico-blue"><img src="https://i.imgur.com/jEgsTM9.png" style="height:26px"></div>
-          <span class="mf-name">Extérieur</span><span class="mf-price">dès 40€</span>
-        </button>
-      </div>
-      <button class="mb-close-top" onclick="closeModal()">✕ Fermer</button>
-    </div>
-
-    <!-- ÉTAPE 2 : Véhicule -->
-    <div id="screen-2" style="display:none">
-      <button class="mb-back" onclick="goStep(1)">← Retour</button>
-      <div class="mb-title">Quel est votre véhicule ?</div>
-      <div class="mb-veh-grid">
-        <button class="mb-veh-btn" onclick="pickVehicle('Citadine')"><span class="mv-emoji">🚗</span><span class="mv-name">Citadine</span><span class="mv-ex">Clio, Polo, 208…</span></button>
-        <button class="mb-veh-btn" onclick="pickVehicle('Berline & Compacte')"><span class="mv-emoji">🚙</span><span class="mv-name">Berline &amp; Compacte</span><span class="mv-ex">Golf, 308, Classe A…</span></button>
-        <button class="mb-veh-btn" onclick="pickVehicle('SUV & Monospace')"><span class="mv-emoji">🚐</span><span class="mv-name">SUV &amp; Monospace</span><span class="mv-ex">Kadjar, 3008, Q3…</span></button>
-        <button class="mb-veh-btn" onclick="pickVehicle('Utilitaire & Van')" style="border-color:rgba(249,115,22,.3);background:linear-gradient(145deg,#fff8f1,#fff0e0)"><span class="mv-emoji">🚚</span><span class="mv-name" style="color:#c2440a">Utilitaire &amp; Van</span><span class="mv-ex" style="color:var(--orange);font-weight:600">Contactez-moi</span></button>
-      </div>
-    </div>
-
-    <!-- ÉCRAN VAN -->
-    <div id="screen-van" style="display:none">
-      <button class="mb-back" onclick="goStep(2)">← Retour</button>
-      <div class="van-contact-box">
-        <div class="van-contact-icon">🚚</div>
-        <div class="van-contact-title">Utilitaire &amp; Van</div>
-        <div class="van-contact-sub">Les tarifs pour ce type de véhicule sont établis sur devis. Contactez-moi directement par SMS ou par email et je vous répondrai dans les plus brefs délais avec une estimation personnalisée.</div>
-        <div class="van-btns">
-          <button class="van-btn-sms" onclick="contactVanSMS()">📱 SMS</button>
-          <button class="van-btn-mail" onclick="contactVanMail()">✉️ Email</button>
-        </div>
-        <button class="close-b" onclick="closeModal()">Fermer</button>
-      </div>
-    </div>
-
-    <!-- ÉTAPE 3 : Options -->
-    <div id="screen-25" style="display:none">
-      <button class="mb-back" onclick="goStep(2)">← Retour</button>
-      <div class="mb-title">Options <span id="opt-title-badge"></span></div>
-
-      <div id="poils-section">
-        <p style="font-size:13px;color:var(--muted);margin-bottom:20px">Votre animal laisse des poils dans l'habitacle ?</p>
-        <button class="poil-choice poil-no" onclick="pickPoils(false)">
-          <div class="pc-left"><div class="pc-icon-wrap pc-icon-green">🚗</div><div><div class="pc-title">Sans option poils</div><div class="pc-sub">Lavage standard — déjà inclus</div></div></div>
-          <span class="pc-tag pc-tag-green">Inclus</span>
-        </button>
-        <div class="poils-or">— ou —</div>
-        <button class="poil-choice poil-yes" onclick="showPoilsLevel()">
-          <div class="pc-left"><div class="pc-icon-wrap pc-icon-orange">🐾</div><div><div class="pc-title">Avec option poils</div><div class="pc-sub">Traitement anti-poils en profondeur</div></div></div>
-          <span class="pc-tag pc-tag-orange">+20€ / +35€</span>
-        </button>
-        <div id="poils-level" style="display:none">
-          <div class="poils-qty-title">Quelle quantité de poils ?</div>
-          <div class="poils-qty-grid">
-            <button class="poils-qty-btn" onclick="pickPoilsLevel('Peu de poils',20)">
-              <div class="pqb-icon pqb-icon-few">◎</div>
-              <span class="pqb-name">Peu de poils</span><span class="pqb-price">+20€</span>
-            </button>
-            <button class="poils-qty-btn" onclick="pickPoilsLevel('Beaucoup de poils',35)">
-              <div class="pqb-icon pqb-icon-many">●●●</div>
-              <span class="pqb-name">Beaucoup de poils</span><span class="pqb-price">+35€</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div id="ext-section" style="display:none">
-        <p style="font-size:13px;color:var(--muted);margin-bottom:20px">Aucune option supplémentaire pour le lavage extérieur.</p>
-        <button class="mb-next-btn" onclick="bk.poilsOption=null;goStep(35)">Continuer →</button>
-      </div>
-    </div>
-
-    <!-- ÉTAPE 4 : Photos -->
-    <div id="screen-35" style="display:none">
-      <button class="mb-back" onclick="backFromPhotos()">← Retour</button>
-      <div class="mb-title">Photos de votre véhicule 📸</div>
-
-      <div class="photo-note-box">
-        <strong>Pourquoi des photos ?</strong><br>
-        Pour vous offrir le meilleur service possible, j'ai besoin d'évaluer l'état de votre véhicule avant l'intervention. Ces photos me permettent d'estimer précisément le temps nécessaire et de préparer le matériel adapté. Elles seront jointes automatiquement à votre message de réservation.
-      </div>
-
-      <div class="photo-upload-zone" id="photo-drop-zone">
-        <input type="file" id="photo-input" accept="image/*" multiple onchange="handlePhotos(this.files)">
-        <div class="puz-icon">📷</div>
-        <div class="puz-title">Ajouter des photos</div>
-        <div class="puz-sub">Intérieur, extérieur, tapis… <br>Appuyez ici ou glissez vos photos</div>
-      </div>
-
-      <div class="photo-preview-grid" id="photo-preview" style="display:none"></div>
-
-      <button class="mb-next-btn" id="photo-next-btn" onclick="goStep(3)" disabled style="margin-top:4px;opacity:.35;cursor:not-allowed;filter:none;transform:none">📸 Continuer avec mes photos</button>
-      <div style="text-align:center;font-size:11px;color:var(--muted);font-weight:500;margin:10px 0 2px">— Je n'ai pas de photos à ajouter —</div>
-      <button class="photo-skip" onclick="goStep(3)">➡️ Passer cette étape</button>
-    </div>
-
-    <!-- ÉTAPE 5 : Créneau -->
-    <div id="screen-3" style="display:none">
-      <button class="mb-back" onclick="goStep(35)">← Retour</button>
-      <div class="mb-title">Choisissez votre créneau</div>
-      <div class="mb-recap" id="recap-price"></div>
-      <label class="mb-label">📅 Date souhaitée</label>
-      <div class="cal-inline" id="cal-inline">
-        <div class="cal-header">
-          <button class="cal-nav" onclick="calNav(-1)" type="button">‹</button>
-          <span class="cal-month-label" id="cal-month-label"></span>
-          <button class="cal-nav" onclick="calNav(1)" type="button">›</button>
-        </div>
-        <div class="cal-weekdays"><span>Lu</span><span>Ma</span><span>Me</span><span>Je</span><span>Ve</span><span>Sa</span><span>Di</span></div>
-        <div class="cal-grid" id="cal-grid"></div>
-        <div class="cal-selected-display" id="cal-selected-display">Aucune date sélectionnée</div>
-      </div>
-      <label class="mb-label">⏰ Créneau horaire</label>
-      <div class="slot-grid" id="slot-grid">
-        <button class="slot-btn" onclick="pickSlot(this,'8h30')">
-          <span class="slot-icon">🌅</span>
-          <span class="slot-time">8h30</span>
-          <span class="slot-label">Matin</span>
-        </button>
-        <button class="slot-btn" onclick="pickSlot(this,'12h30')">
-          <span class="slot-icon">☀️</span>
-          <span class="slot-time">12h30</span>
-          <span class="slot-label">Après-midi</span>
-        </button>
-        <button class="slot-btn" onclick="pickSlot(this,'16h30')">
-          <span class="slot-icon">🌆</span>
-          <span class="slot-time">16h30</span>
-          <span class="slot-label">Fin de journée</span>
-        </button>
-      </div>
-      <input type="hidden" id="mb-time" value="">
-      <div style="display:flex;align-items:flex-start;gap:10px;background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.25);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:12px;color:var(--ink);line-height:1.6">
-        <span style="font-size:18px;flex-shrink:0">⚡</span>
-        <span>Pensez à vérifier qu'une <strong>prise électrique accessible</strong> est disponible à l'adresse d'intervention — elle est indispensable pour réaliser la prestation.</span>
-      </div>
-      <button class="mb-next-btn" onclick="goStep(4)">Suivant →</button>
-    </div>
-
-    <!-- ÉTAPE 6 : Adresse & envoi -->
-    <div id="screen-4" style="display:none">
-      <button class="mb-back" onclick="goStep(3)">← Retour</button>
-      <div class="mb-title">Votre adresse</div>
-      <div class="mb-recap-full" id="recap-full"></div>
-      <label class="mb-label">📍 Adresse complète d'intervention</label>
-      <input type="text" id="mb-address" class="m-field" placeholder="Ex : 12 rue des Fleurs, Lunéville">
-      <label class="mb-label">💬 Informations complémentaires (optionnel)</label>
-      <input type="text" id="mb-notes" class="m-field" placeholder="Ex : portail bleu, code 1234…">
-      <div class="m-btns">
-        <button class="sms-b" onclick="sendBooking('sms')">📱 SMS</button>
-        <button class="mail-b" onclick="sendBooking('mail')">✉️ Email</button>
-      </div>
-      <button class="close-b" onclick="closeModal()">Fermer</button>
-    </div>
-  </div>
-</div>
-
-<script>
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('sc',scrollY>40));
-
-function initSlider(c){
-  const L=c.querySelector('.img-left'),R=c.querySelector('.img-right'),ln=c.querySelector('.slider-line'),btn=c.querySelector('.slider-btn');
-  let drag=false;
-  function mv(cx){const r=c.getBoundingClientRect();let x=Math.max(0,Math.min(cx-r.left,r.width));const p=(x/r.width)*100;L.style.clipPath=`inset(0 ${100-p}% 0 0)`;R.style.clipPath=`inset(0 0 0 ${p}%)`;ln.style.left=x+'px';btn.style.left=x+'px';}
-  c.addEventListener('mousedown',()=>drag=true);window.addEventListener('mouseup',()=>drag=false);window.addEventListener('mousemove',e=>{if(drag)mv(e.clientX)});
-  c.addEventListener('touchstart',e=>{drag=true;mv(e.touches[0].clientX)},{passive:true});window.addEventListener('touchend',()=>drag=false);window.addEventListener('touchmove',e=>{if(drag)mv(e.touches[0].clientX)},{passive:true});
-}
-document.querySelectorAll('.before-after').forEach(initSlider);
-
-document.querySelectorAll('.faq-q').forEach(btn=>{
-  btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');});
-});
-
-function toggleDetails(card,type){
-  const isOpen=card.classList.contains('open');
-  document.querySelectorAll('.card').forEach(c=>{c.classList.remove('open');const det=c.querySelector('.btn-det');if(det)det.style.display='block';});
-  if(!isOpen){card.classList.add('open');const det=card.querySelector('.btn-det');if(det)det.style.display='none';}
-}
-
-const TARIFS={
-  'Intérieur':{'Citadine':45,'Berline & Compacte':50,'SUV & Monospace':55,'Utilitaire & Van':null},
-  'Extérieur':{'Citadine':40,'Berline & Compacte':45,'SUV & Monospace':50,'Utilitaire & Van':null},
-  'Complet':  {'Citadine':75,'Berline & Compacte':85,'SUV & Monospace':95,'Utilitaire & Van':null},
-};
-
-const VEH_EMOJI={'Citadine':'🚗','Berline & Compacte':'🚙','SUV & Monospace':'🚐','Utilitaire & Van':'🚚'};
-
-let bk={formule:'',vehicule:'',poilsOption:null,date:'',time:'',address:'',notes:''};
-let calYear,calMonth,calSelected=null;
-let uploadedPhotos=[];
-
-function hasInterior(f){return f==='Intérieur'||f==='Complet';}
-function getTotal(){const b=TARIFS[bk.formule]?.[bk.vehicule]??null;return b===null?null:b+(bk.poilsOption?bk.poilsOption.extra:0);}
-function getTotalTxt(){const t=getTotal();return t!==null?t+'€':'Sur devis';}
-
-function openBooking(preset){
-  bk={formule:'',vehicule:'',poilsOption:null,date:'',time:'',address:'',notes:''};
-  calSelected=null;uploadedPhotos=[];
-  document.getElementById('modal').style.display='flex';
-  if(preset){bk.formule=preset;goStep(2);}else goStep(1);
-}
-function closeModal(){document.getElementById('modal').style.display='none';}
-
-function goStep(n){
-  const allScreens=['screen-1','screen-2','screen-van','screen-25','screen-35','screen-3','screen-4'];
-  allScreens.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
-  const screenMap={1:'screen-1',2:'screen-2','van':'screen-van',25:'screen-25',35:'screen-35',3:'screen-3',4:'screen-4'};
-  const target=document.getElementById(screenMap[n]);
-  if(target)target.style.display='block';
-
-  const progIds=[1,2,25,35,3,4];
-  const visOrder={1:1,2:2,25:3,35:4,3:5,4:6,'van':2};
-  const cur=visOrder[n]||1;
-  progIds.forEach(i=>{
-    const s=document.getElementById('prog-'+i);if(!s)return;
-    const o=visOrder[i];
-    s.classList.toggle('active',o===cur);
-    s.classList.toggle('done',o<cur);
-  });
-  ['mbl-1','mbl-2','mbl-25','mbl-35','mbl-3'].forEach((id,idx)=>{
-    const el=document.getElementById(id);if(el)el.classList.toggle('done',cur>idx+2);
-  });
-
-  if(n===25){
-    document.getElementById('poils-level').style.display='none';
-    if(hasInterior(bk.formule)){
-      document.getElementById('poils-section').style.display='block';
-      document.getElementById('ext-section').style.display='none';
-      document.getElementById('opt-title-badge').textContent='🐾';
-    } else {
-      document.getElementById('poils-section').style.display='none';
-      document.getElementById('ext-section').style.display='block';
-      document.getElementById('opt-title-badge').textContent='';
-    }
-  }
-  if(n===35)resetPhotoStep();
-  if(n===3)buildStep3();
-  if(n===4)buildStep4();
-}
-
-function pickFormule(f){bk.formule=f;goStep(2);}
-
-function pickVehicle(v){
-  bk.vehicule=v;
-  if(v==='Utilitaire & Van'){goStep('van');return;}
-  goStep(25);
-}
-
-function contactVanSMS(){
-  const msg=`Bonjour,\n\nJe souhaite obtenir un devis pour un lavage ${bk.formule} sur un Utilitaire / Van.\n\nMerci de me recontacter.\n\nCordialement`;
-  window.location.href=`sms:+330778043568?body=${encodeURIComponent(msg)}`;
-}
-function contactVanMail(){
-  const msg=`Bonjour,\n\nJe souhaite obtenir un devis pour un lavage ${bk.formule} sur un Utilitaire / Van.\n\nMerci de me recontacter.\n\nCordialement`;
-  window.location.href=`mailto:mt.lavage.auto.54@gmail.com?subject=Devis Lavage Utilitaire / Van&body=${encodeURIComponent(msg)}`;
-}
-
-function pickPoils(w){
-  if(!w){bk.poilsOption=null;goStep(35);}
-  else showPoilsLevel();
-}
-function showPoilsLevel(){document.getElementById('poils-level').style.display='block';}
-function pickPoilsLevel(label,extra){bk.poilsOption={label,extra};goStep(35);}
-function backFromPhotos(){goStep(25);}
-
-function resetPhotoStep(){
-  uploadedPhotos=[];
-  document.getElementById('photo-preview').style.display='none';
-  document.getElementById('photo-preview').innerHTML='';
-  const btn=document.getElementById('photo-next-btn');
-  btn.disabled=true;btn.style.opacity='.35';btn.style.cursor='not-allowed';
-  document.getElementById('photo-input').value='';
-}
-
-function handlePhotos(files){
-  const max=5;
-  Array.from(files).slice(0,max-uploadedPhotos.length).forEach(file=>{
-    if(!file.type.startsWith('image/'))return;
-    const reader=new FileReader();
-    reader.onload=e=>{
-      uploadedPhotos.push({name:file.name,dataUrl:e.target.result});
-      renderPhotoPreview();
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-function renderPhotoPreview(){
-  const grid=document.getElementById('photo-preview');
-  grid.innerHTML='';
-  uploadedPhotos.forEach((p,i)=>{
-    const wrap=document.createElement('div');wrap.className='photo-thumb';
-    const img=document.createElement('img');img.src=p.dataUrl;
-    const del=document.createElement('button');del.className='photo-thumb-del';del.textContent='✕';
-    del.onclick=()=>{uploadedPhotos.splice(i,1);renderPhotoPreview();};
-    wrap.appendChild(img);wrap.appendChild(del);
-    grid.appendChild(wrap);
-  });
-  grid.style.display=uploadedPhotos.length?'grid':'none';
-  const btn=document.getElementById('photo-next-btn');
-  if(uploadedPhotos.length){
-    btn.disabled=false;btn.style.opacity='1';btn.style.cursor='pointer';btn.style.filter='';btn.style.transform='';
-  } else {
-    btn.disabled=true;btn.style.opacity='.35';btn.style.cursor='not-allowed';btn.style.filter='none';btn.style.transform='none';
-  }
-}
-
-function pickSlot(btn,val){
-  document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
-  btn.classList.add('selected');
-  document.getElementById('mb-time').value=val;
-  bk.time=val;
-}
-
-function buildStep3(){
-  const poilsInfo=bk.poilsOption?` + 🐾 ${bk.poilsOption.label}`:'';
-  document.getElementById('recap-price').innerHTML=`<span>${bk.formule}${poilsInfo} · ${VEH_EMOJI[bk.vehicule]||''} ${bk.vehicule}</span><span class="recap-price-tag">${getTotalTxt()}</span>`;
-  document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
-  document.getElementById('mb-time').value='';
-  bk.time='';
-  setTimeout(()=>initCal(),10);
-}
-
-function buildStep4(){
-  bk.date=calSelected||'';
-  bk.time=document.getElementById('mb-time').value;
-  if(!bk.date){alert('Veuillez choisir une date.');goStep(3);return;}
-  if(!bk.time){alert('Veuillez choisir un créneau horaire.');goStep(3);return;}
-  const poilsRow=bk.poilsOption?`<div class="recap-row">🐾 <strong>Option poils :</strong> ${bk.poilsOption.label} (+${bk.poilsOption.extra}€)</div>`:'';
-  const photosRow=uploadedPhotos.length?`<div class="recap-row">📸 <strong>Photos :</strong> ${uploadedPhotos.length} photo(s) jointe(s)</div>`:'';
-  document.getElementById('recap-full').innerHTML=
-    `<div class="recap-row">✅ <strong>Formule :</strong> ${bk.formule}</div>${poilsRow}
-     <div class="recap-row">${VEH_EMOJI[bk.vehicule]||''} <strong>Véhicule :</strong> ${bk.vehicule}</div>
-     <div class="recap-row">📅 <strong>Date :</strong> ${fmtDate(bk.date)}</div>
-     <div class="recap-row">⏰ <strong>Créneau :</strong> ${bk.time}</div>
-     ${photosRow}
-     <div class="recap-row">💶 <strong>Prix estimé :</strong> <span style="color:var(--blue2);font-weight:700">${getTotalTxt()}</span></div>`;
-  if(bk.address)document.getElementById('mb-address').value=bk.address;
-}
-
-function fmtDate(d){if(!d)return'';const[y,m,j]=d.split('-');return`${j}/${m}/${y}`;}
-
-function sendBooking(type){
-  bk.address=document.getElementById('mb-address').value.trim();
-  bk.notes=document.getElementById('mb-notes').value.trim();
-  if(!bk.address){alert('Veuillez renseigner votre adresse.');return;}
-  const poilsLine=bk.poilsOption?`\n🐾 Option poils : ${bk.poilsOption.label} (+${bk.poilsOption.extra}€)`:'';
-  const photosLine=uploadedPhotos.length?`\n📸 Photos jointes : ${uploadedPhotos.length} photo(s) — veuillez les ajouter manuellement à votre message si votre application le permet.`:'';
-  const msg=`Bonjour,\n\nJe souhaite réserver une prestation MT Lavage Auto.\n\n🧽 Formule : ${bk.formule}${poilsLine}\n${VEH_EMOJI[bk.vehicule]||''} Véhicule : ${bk.vehicule}\n📅 Date : ${fmtDate(bk.date)}\n⏰ Créneau : ${bk.time}\n📍 Adresse : ${bk.address}\n💶 Prix estimé : ${getTotalTxt()}${bk.notes?'\n💬 Notes : '+bk.notes:''}${photosLine}\n\nMerci de confirmer la disponibilité.\n\nCordialement`;
-  if(type==='sms')window.location.href=`sms:+330778043568?body=${encodeURIComponent(msg)}`;
-  else window.location.href=`mailto:mt.lavage.auto.54@gmail.com?subject=RDV Lavage - ${bk.formule} - ${bk.vehicule}&body=${encodeURIComponent(msg)}`;
-}
-
-document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
-
-function initCal(){
-  if(!calYear){const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth();}
-  renderCal();
-}
-function calNav(dir){calMonth+=dir;if(calMonth>11){calMonth=0;calYear++;}if(calMonth<0){calMonth=11;calYear--;}renderCal();}
-function renderCal(){
-  const MONTHS=['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-  document.getElementById('cal-month-label').textContent=MONTHS[calMonth]+' '+calYear;
-  const grid=document.getElementById('cal-grid');grid.innerHTML='';
-  const today=new Date();today.setHours(0,0,0,0);
-  let startDow=new Date(calYear,calMonth,1).getDay();startDow=startDow===0?6:startDow-1;
-  const daysInMonth=new Date(calYear,calMonth+1,0).getDate();
-  const daysInPrev=new Date(calYear,calMonth,0).getDate();
-  for(let i=startDow-1;i>=0;i--){const d=document.createElement('button');d.className='cal-day cal-day-other';d.textContent=daysInPrev-i;grid.appendChild(d);}
-  for(let day=1;day<=daysInMonth;day++){
-    const date=new Date(calYear,calMonth,day);date.setHours(0,0,0,0);
-    const d=document.createElement('button');d.className='cal-day';d.textContent=day;
-    const ymd=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
-    if(date<today){d.classList.add('cal-day-disabled');d.disabled=true;}
-    else if(date.getTime()===today.getTime())d.classList.add('cal-day-today');
-    if(calSelected===ymd)d.classList.add('cal-day-selected');
-    if(date>=today){d.addEventListener('click',()=>{calSelected=ymd;const[y,m,j]=ymd.split('-');const disp=document.getElementById('cal-selected-display');if(disp){disp.textContent='✅ '+j+'/'+m+'/'+y;disp.classList.add('cal-sel-filled');}bk.date=ymd;renderCal();});}
-    grid.appendChild(d);
-  }
-  const total=startDow+daysInMonth;const rem=total%7===0?0:7-(total%7);
-  for(let i=1;i<=rem;i++){const d=document.createElement('button');d.className='cal-day cal-day-other';d.textContent=i;grid.appendChild(d);}
-}
-</script>
 </body>
 </html>
